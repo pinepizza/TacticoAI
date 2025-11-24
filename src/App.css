@@ -1,38 +1,347 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(135deg, #43a047 0%, #1e88e5 100%);
+  padding: 40px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
+.header p {
+  opacity: 0.9;
+  font-size: 1.1em;
+}
+
+.content {
+  padding: 40px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95em;
+}
+
+.form-group select {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #43a047;
+}
+
+.form-group select:hover {
+  border-color: #b0b0b0;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #e0e0e0;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #43a047;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(67, 160, 71, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #43a047;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(67, 160, 71, 0.5);
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 5px;
+}
+
+.checkbox-container {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.checkbox-container:hover {
+  background: #eeeeee;
+}
+
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #43a047;
+}
+
+.analyze-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #43a047 0%, #1e88e5 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(67, 160, 71, 0.3);
+}
+
+.analyze-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(67, 160, 71, 0.4);
+}
+
+.analyze-btn:active {
+  transform: translateY(0);
+}
+
+.results {
+  margin-top: 30px;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card {
+  background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #90caf9;
+  margin-bottom: 20px;
+}
+
+.result-card h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.result-text {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.result-text.green {
+  color: #2e7d32;
+}
+
+.result-text.lime {
+  color: #689f38;
+}
+
+.result-text.yellow {
+  color: #f9a825;
+}
+
+.result-text.orange {
+  color: #ef6c00;
+}
+
+.result-text.red {
+  color: #c62828;
+}
+
+.optimal-card {
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid;
+}
+
+.optimal-card.optimal {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-color: #81c784;
+}
+
+.optimal-card.not-optimal {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border-color: #ffb74d;
+}
+
+.optimal-card h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.optimal-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.optimal-indicator p {
+  color: #2e7d32;
+  font-size: 1.1em;
+}
+
+.optimal-indicator.warning p {
+  color: #ef6c00;
+}
+
+.pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4caf50;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.tips {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font-size: 0.95em;
+}
+
+.tips strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.tips ul {
+  margin-left: 20px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.tips li {
+  margin: 5px 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 0.9em;
+  border-top: 1px solid #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2em;
+  }
+
+  .header p {
+    font-size: 1em;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-text {
+    font-size: 1.4em;
   }
 }
